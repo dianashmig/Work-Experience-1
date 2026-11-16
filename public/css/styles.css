@@ -409,7 +409,21 @@ img {
 .playbook-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  gap: 32px;
+}
+
+.playbook-grid .card-body {
+  padding: 20px;
+}
+
+.playbook-grid .card-body h3 {
+  font-size: 20px;
+}
+
+.playbook-grid .card-body p {
+  font-size: 15px;
+  line-height: 1.5;
+  margin-bottom: 0;
 }
 
 /* Card grid */
@@ -800,5 +814,79 @@ img {
 
   .footer-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 950px) {
+  .playbook-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .playbook-grid .card:last-child {
+    grid-column: 1 / -1;
+    width: calc((100% - 32px) / 2);
+    justify-self: center;
+  }
+}
+
+@media (max-width: 680px) {
+  .playbook-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .playbook-grid .card:last-child {
+    grid-column: auto;
+    width: auto;
+  }
+}
+
+@media (max-width: 1100px) {
+  .hero-inner {
+    flex-direction: column;
+  }
+
+  .hero-media {
+    width: min(100%, 600px);
+  }
+}
+
+@media (min-width: 890px) and (max-width: 1100px) {
+  .hero-inner {
+    flex-direction: row;
+    gap: 32px;
+  }
+
+  .hero-text,
+  .hero-media {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .hero-media {
+    width: auto;
+  }
+
+  .hero-text h1 {
+    font-size: clamp(40px, 4.5vw, 48px);
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1100px) {
+  .site-header--home .container {
+    flex-wrap: wrap;
+  }
+
+  .site-header--home nav {
+    flex: 1 0 100%;
+  }
+
+  .site-header--home .nav-links {
+    justify-content: center;
+    gap: 8px 20px;
+  }
+
+  .site-header--home .nav-links a {
+    padding: 0 4px;
+    font-size: 15px;
   }
 }
