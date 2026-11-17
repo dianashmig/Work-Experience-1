@@ -1,8 +1,20 @@
+let formToken = '';
+
+fetch('/contact-token')
+  .then(response => response.json())
+  .then(data => {
+    formToken = data.token;
+  });
 const form = document.getElementById('contact-form');
 const statusEl = document.getElementById('form-status');
 
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
+
+if (!formToken) {
+  statusEl.textContent = 'Please wait a moment and try again.';
+  return;
+}
 
   const button = form.querySelector('button[type="submit"]');
   button.disabled = true;
@@ -10,6 +22,7 @@ form.addEventListener('submit', async (event) => {
   statusEl.className = 'form-status';
 
   const data = Object.fromEntries(new FormData(form));
+  data.formToken = formToken;
 
   try {
     const response = await fetch('/contact', {
